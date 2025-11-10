@@ -185,7 +185,7 @@ const App: React.FC = () => {
     try {
         const downloadLink = await generateVideo(generatedImageData.base64, generatedImageData.mimeType);
         setLoadingMessage('Descargando video generado...');
-        const response = await fetch(`${downloadLink}&key=${process.env.API_KEY}`);
+        const response = await fetch(`${downloadLink}&key=${import.meta.env.VITE_API_KEY}`);
         if (!response.ok) throw new Error(`Error al descargar el video: ${response.statusText}`);
         const videoBlob = await response.blob();
         const videoUrl = URL.createObjectURL(videoBlob);

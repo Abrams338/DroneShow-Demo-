@@ -1,6 +1,6 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY;
 if (!API_KEY) {
     throw new Error("API_KEY environment variable not set");
 }
@@ -95,7 +95,7 @@ export const editImage = async (base64Data: string, mimeType: string, prompt: st
 export const generateVideo = async (base64ImageData: string, mimeType: string): Promise<string> => {
     // A new instance is created here to ensure it uses the most up-to-date API key
     // selected by the user in the AI Studio key selector dialog.
-    const videoAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const videoAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
     try {
         let operation = await videoAI.models.generateVideos({
             model: 'veo-3.1-fast-generate-preview',
